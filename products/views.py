@@ -3,11 +3,11 @@ from django.shortcuts import render
 
 
 productname = 'Yu-gi-oh cards'
-yugioh_cards = ('dark magician', 'blue eyes WD', 'man eater bug', 'kuriboh', 'toon BEWD')
-
+yugioh_cards = ('Dark Magician', 'Blue Eyes White Dragon', 'Man eater bug', 'Kuriboh', 'Blue Eyes Toon Dragon')
+Index = ('0', '1', '2', '3', '4')
 
 def index(request):
-    return HttpResponse('hello world')
+    return HttpResponse('Yu-Gi-Oh cards')
 
 
 def error(request):
@@ -17,24 +17,15 @@ def error(request):
 def new(request):
     return HttpResponse("New " + productname + " has arrived")
 
+
 def getcard(request):
     return HttpResponse(yugioh_cards)
 
-def getcard0(request):
-    return HttpResponse(yugioh_cards[0])
 
+def productIndex(request, index = 0):
+    if index >= len(yugioh_cards):
+        return HttpResponse("card not found")
+    else:
+        message = str(yugioh_cards[index])
+        return HttpResponse(message)
 
-def getcard1(request):
-    return HttpResponse(yugioh_cards[1])
-
-
-def getcard2(request):
-    return HttpResponse(yugioh_cards[2])
-
-
-def getcard3(request):
-    return HttpResponse(yugioh_cards[3])
-
-
-def getcard4(request):
-    return HttpResponse(yugioh_cards[4])
