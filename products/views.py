@@ -1,13 +1,16 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import Product
 
 
 productname = 'Yu-gi-oh cards'
-yugioh_cards = ('Dark Magician', 'Blue Eyes White Dragon', 'Man eater bug', 'Kuriboh', 'Blue Eyes Toon Dragon')
-Index = ('0', '1', '2', '3', '4')
+yugioh_cards = ('Dark Magician', 'Blue Eyes White Dragon', 'Man eater bug', 'Kuriboh', 'Blue Eyes Toon Dragon', 'Black Luster Solder')
+Index = ('0', '1', '2', '3', '4', '5')
 
 def index(request):
-    return HttpResponse('Yu-Gi-Oh cards')
+    products = Product.objects.all()
+    return render(request, 'index.html',
+                  {'products': products})
 
 
 def error(request):
@@ -16,6 +19,7 @@ def error(request):
 
 def new(request):
     return HttpResponse("New " + productname + " has arrived")
+
 
 
 def getcard(request):
